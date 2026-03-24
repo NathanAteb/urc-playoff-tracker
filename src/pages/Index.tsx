@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RugbyStandingsTable from "@/components/RugbyStandingsTable";
 import RugbyLegend from "@/components/RugbyLegend";
+import SiteNav from "@/components/SiteNav";
 
 const INTRO_VIDEO_SRC = '/lv_0_20240126093452.mp4';
 
@@ -62,6 +63,7 @@ const Index = () => {
         </div>
       )}
       <div className="max-w-[1400px] mx-auto w-full min-w-0">
+        <SiteNav />
         <RugbyStandingsTable />
         <div className="mt-6">
           <RugbyLegend />
