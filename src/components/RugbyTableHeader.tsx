@@ -19,8 +19,10 @@ const RugbyTableHeader: React.FC<RugbyTableHeaderProps> = ({
   return (
     <TableHeader>
       <TableRow className="hover:bg-transparent h-12">
-        <TableHead className="w-10 sticky left-0 bg-background z-10 py-3">#</TableHead>
-        <TableHead className="w-40 sticky left-10 bg-background z-10 py-3">TEAM</TableHead>
+        <TableHead className="w-12 min-w-[3rem] sticky left-0 z-20 bg-white py-3 shadow-[4px_0_12px_-4px_rgba(0,0,0,0.12)]">#</TableHead>
+        <TableHead className="w-12 min-w-[3rem] sm:w-40 sm:min-w-[10rem] sticky left-12 z-20 bg-white py-3 text-center sm:text-left shadow-[4px_0_12px_-4px_rgba(0,0,0,0.12)]">
+          <span className="sr-only sm:not-sr-only">TEAM</span>
+        </TableHead>
         <TableHead className="w-10 py-3">PL</TableHead>
         <TableHead className="w-10 py-3">W</TableHead>
         <TableHead className="w-10 py-3">D</TableHead>

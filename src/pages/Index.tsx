@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RugbyStandingsTable from "@/components/RugbyStandingsTable";
 import RugbyLegend from "@/components/RugbyLegend";
 
@@ -7,6 +7,7 @@ const INTRO_VIDEO_SRC = '/lv_0_20240126093452.mp4';
 
 const Index = () => {
   const [introOpen, setIntroOpen] = useState(true);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (!introOpen) return;
@@ -17,8 +18,27 @@ const Index = () => {
     };
   }, [introOpen]);
 
+  useEffect(() => {
+    if (!introOpen) return;
+    const v = introVideoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    const attempt = () => {
+      void v.play().catch(() => {
+        /* autoplay blocked until gesture — controls still allow start */
+      });
+    };
+    attempt();
+    if (v.readyState < 2) {
+      v.addEventListener('loadeddata', attempt, { once: true });
+      return () => v.removeEventListener('loadeddata', attempt);
+    }
+  }, [introOpen]);
+
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 p-2 sm:p-4">
       {introOpen && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
@@ -27,6 +47,7 @@ const Index = () => {
           aria-label="Intro video"
         >
           <video
+            ref={introVideoRef}
             className="max-h-full max-w-full w-full object-contain"
             src={INTRO_VIDEO_SRC}
             autoPlay
@@ -40,7 +61,7 @@ const Index = () => {
           </video>
         </div>
       )}
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto w-full min-w-0">
         <RugbyStandingsTable />
         <div className="mt-6">
           <RugbyLegend />

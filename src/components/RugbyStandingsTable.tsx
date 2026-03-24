@@ -131,10 +131,10 @@ const RugbyStandingsTable = () => {
   };
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex justify-between items-center mb-4">
+    <div className="w-full min-w-0 max-w-full">
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-4">
         <RugbyTableTitle />
-        <div className="flex gap-2">
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
           <button
             onClick={handleReset}
             className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
@@ -144,8 +144,12 @@ const RugbyStandingsTable = () => {
           <ExportPdfButton targetElementId="rugby-standings-table" filename="URC-Rugby-Standings" />
         </div>
       </div>
-      <div id="rugby-standings-table" className="print:scale-100 break-inside-avoid page-break-inside-avoid bg-white p-4 rounded-lg shadow-sm">
-        <Table className="w-full table-fixed break-inside-avoid border-collapse">
+      <p className="text-xs text-gray-500 mb-2 sm:hidden" aria-hidden>
+        Swipe horizontally to see all columns
+      </p>
+      <div className="overflow-x-auto overscroll-x-contain touch-pan-x [-webkit-overflow-scrolling:touch] rounded-lg">
+        <div id="rugby-standings-table" className="print:scale-100 break-inside-avoid page-break-inside-avoid bg-white p-2 sm:p-4 rounded-lg shadow-sm min-w-min">
+        <Table className="w-full min-w-[1024px] table-fixed break-inside-avoid border-collapse">
           <RugbyTableHeader
             lockedFixtures={lockedFixtures}
             onFixtureLockChange={handleFixtureLockChange}
@@ -174,6 +178,7 @@ const RugbyStandingsTable = () => {
             </TableBody>
           </DndContext>
         </Table>
+        </div>
       </div>
     </div>
   );

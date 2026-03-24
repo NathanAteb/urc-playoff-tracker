@@ -40,7 +40,7 @@ const PositionIndicator: React.FC<PositionIndicatorProps> = ({
   }
 
   return (
-    <TableCell className="sticky left-0 bg-background z-10 py-2 w-12">
+    <TableCell className="sticky left-0 z-20 bg-white py-2 w-12 min-w-[3rem] shadow-[4px_0_12px_-4px_rgba(0,0,0,0.12)]">
       <div className="flex items-center relative">
         <div className="flex items-center justify-between w-full">
           <span>{position}</span>
