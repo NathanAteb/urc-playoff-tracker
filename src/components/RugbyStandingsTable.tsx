@@ -4,12 +4,10 @@ import {
   Table,
   TableBody,
 } from "@/components/ui/table";
-import { teams as initialTeams } from '@/data/rugby';
 import { defaultTeamStats } from '@/data/rugby/defaultStats';
 import RugbyTableHeader from './RugbyTableHeader';
 import RugbyTableTitle from './RugbyTableTitle';
 import TeamRow from './TeamRow';
-import ExportPdfButton from './ExportPdfButton';
 import { Team } from '@/types/rugby';
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
@@ -141,7 +139,6 @@ const RugbyStandingsTable = () => {
           >
             Reset All
           </button>
-          <ExportPdfButton targetElementId="rugby-standings-table" filename="URC-Rugby-Standings" />
         </div>
       </div>
       <p className="text-xs text-gray-500 mb-2 sm:hidden" aria-hidden>
